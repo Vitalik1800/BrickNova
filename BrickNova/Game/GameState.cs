@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace BrickNova.Game;
 
-namespace BrickNova.Game
+public enum GameState
 {
-    internal class GameState
-    {
-    }
+    Menu,
+    Playing,
+    Paused,
+    GameOver,
+    Victory
 }

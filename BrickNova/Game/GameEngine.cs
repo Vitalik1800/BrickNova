@@ -1,6 +1,5 @@
 ﻿using BrickNova.Entities;
 using BrickNova.Input;
-using System.Diagnostics;
 
 namespace BrickNova.Game;
 
@@ -9,14 +8,14 @@ public class GameEngine
     private readonly GameLoop _gameLoop;
     private readonly InputManager _inputManager;
     private readonly Paddle _paddle;
-    private GameState _gameState;
+    private GameState _gameState = GameState.Menu;
+    public GameState CurrentState => _gameState;
 
     public GameEngine()
     {
         _inputManager = new InputManager();
         _gameLoop = new GameLoop(this);
         _paddle = new Paddle();
-        _gameState = GameState.Menu;
     }
 
     public void Start()
@@ -50,12 +49,17 @@ public class GameEngine
     {
         InputState input = _inputManager.State;
 
-        if (input.Pause)
+        if (_gameState == GameState.Menu && input.Start)
+        {
+            _gameState = GameState.Playing;
+        }
+
+        if (_gameState == GameState.Playing && input.Pause)
         {
             _gameState = GameState.Paused;
         }
 
-        if (input.Start)
+        if (_gameState == GameState.Paused && input.Start)
         {
             _gameState = GameState.Playing;
         }
@@ -78,12 +82,32 @@ public class GameEngine
 
     private void Update()
     {
-
+        if (_gameState != GameState.Playing)
+        {
+            return;
+        }
     }
 
     private void Render()
     {
 
     }
+
+    private void SetVictory()
+    {
+        if (_gameState == GameState.Playing)
+        {
+            _gameState = GameState.Victory;
+        }
+    }
+
+    private void SetGameOver()
+    {
+        if (_gameState == GameState.Playing)
+        {
+            _gameState = GameState.GameOver;
+        }
+    }
+
 
 }
