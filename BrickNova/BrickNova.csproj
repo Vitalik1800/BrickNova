@@ -15,9 +15,7 @@
     <Folder Include="Database\" />
     <Folder Include="Levels\" />
     <Folder Include="Collision\" />
-    <Folder Include="Input\" />
     <Folder Include="Entities\" />
-    <Folder Include="Game\" />
     <Folder Include="Rendering\" />
   </ItemGroup>
 
