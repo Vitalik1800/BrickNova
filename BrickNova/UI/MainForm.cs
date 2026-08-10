@@ -22,11 +22,15 @@ namespace BrickNova
             ForeColor = Color.White;
 
             DoubleBuffered = true;
+            KeyPreview = true;
 
             _gameEngine = new GameEngine();
 
             Load += OnFormLoad;
             FormClosing += OnFormClosing;
+
+            KeyDown += OnKeyDown;
+            KeyUp += OnKeyUp;
         }
 
         private void OnFormLoad(object? sender, EventArgs e)
@@ -37,6 +41,16 @@ namespace BrickNova
         private void OnFormClosing(object? sender, FormClosingEventArgs e)
         {
             _gameEngine.Stop();
+        }
+
+        private void OnKeyDown(object? sender, KeyEventArgs e)
+        {
+            _gameEngine.HandleKeyDown(e.KeyCode);
+        }
+
+        private void OnKeyUp(object? sender, KeyEventArgs e)
+        {
+            _gameEngine.HandleKeyUp(e.KeyCode);
         }
     }
 }

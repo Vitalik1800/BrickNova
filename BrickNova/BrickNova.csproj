@@ -15,7 +15,6 @@
     <Folder Include="Database\" />
     <Folder Include="Levels\" />
     <Folder Include="Collision\" />
-    <Folder Include="Entities\" />
     <Folder Include="Rendering\" />
   </ItemGroup>
 
