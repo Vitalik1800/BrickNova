@@ -95,9 +95,38 @@ public class CollisionManager
             paddle.Position.Y - ball.Size.Height
         );
 
+        float paddleCenterX =
+            paddle.Position.X + 
+            paddle.Size.Width / 2f;
+
+        float ballCenterX =
+            ball.Position.X +
+            ball.Size.Width / 2f;
+
+        float hitPosition =
+            ballCenterX - paddleCenterX;
+
+        float normalizedHit =
+            hitPosition /
+            (paddle.Size.Width / 2f);
+
+        normalizedHit = Math.Clamp(
+            normalizedHit,
+            -1f,
+            1f
+        );
+
+        const float maxHorizontalSpeed = 5f;
+
+        float velocityX = 
+            normalizedHit * maxHorizontalSpeed;
+
+        float velocityY =
+            -Math.Abs(ball.Velocity.Y);
+
         ball.Velocity = new PointF(
-            ball.Velocity.X,
-            -Math.Abs(ball.Velocity.Y)
+            velocityX,
+            velocityY
         );
     }
 
@@ -140,7 +169,7 @@ public class CollisionManager
 
     private bool IsBallLost(Ball ball)
     {
-        return ball.Position.Y > FieldHeight;
+        return ball.Position.Y + ball.Size.Height > FieldHeight;
     }
 }
 

@@ -120,17 +120,17 @@ public class GameEngine
         if (collisionResult.DestroyedBrick != null)
         {
             AddScore(collisionResult.DestroyedBrick.Points);
+
+            if (_levelManager.IsLevelCompleted())
+            {
+                SetVictory();
+                return;
+            }
         }
 
         if (collisionResult.BallLost)
         {
             HandleBallLost();
-            return;
-        }
-
-        if (_levelManager.IsLevelCompleted())
-        {
-            SetVictory();
         }
     }
 
