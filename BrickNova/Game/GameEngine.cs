@@ -1,5 +1,6 @@
 ﻿using BrickNova.Entities;
 using BrickNova.Input;
+using System.Diagnostics;
 
 namespace BrickNova.Game;
 
@@ -11,8 +12,23 @@ public class GameEngine
     private readonly Ball _ball;
     private readonly Paddle _paddle;
 
+    private readonly LevelManager _levelManager;
+
+    private readonly CollisionManager _collisionManager;
+
     private GameState _gameState = GameState.Menu;
     public GameState CurrentState => _gameState;
+    private InputState _currentInput = new();
+
+    private const int InitialLives = 3;
+
+    private int _lives = InitialLives;
+
+    public int Lives => _lives;
+
+    private int _score;
+
+    public int Score => _score;
 
     public GameEngine()
     {
@@ -21,6 +37,10 @@ public class GameEngine
 
         _ball = new Ball();
         _paddle = new Paddle();
+
+        _levelManager = new LevelManager();
+
+        _collisionManager = new CollisionManager();
     }
 
     public void Start()
@@ -52,37 +72,24 @@ public class GameEngine
 
     private void ProcessInput()
     {
-        InputState input = _inputManager.State;
+        _currentInput = _inputManager.State;
 
-        if (_gameState == GameState.Menu && input.Start)
+        if (_gameState == GameState.Menu && _currentInput.Start)
         {
             _gameState = GameState.Playing;
         }
 
-        if (_gameState == GameState.Playing && input.Pause)
+        if (_gameState == GameState.Playing && _currentInput.Pause)
         {
             _gameState = GameState.Paused;
         }
 
-        if (_gameState == GameState.Paused && input.Start)
+        if (_gameState == GameState.Paused && _currentInput.Start)
         {
             _gameState = GameState.Playing;
         }
 
-        if (_gameState == GameState.Playing)
-        {
-            if (input.Left)
-            {
-                _paddle.MoveLeft();
-            } 
-
-            if (input.Right)
-            {
-                _paddle.MoveRight();
-            }
-        }
-
-        input.ClearCommands();
+        _currentInput.ClearCommands();
     }
 
     private void Update()
@@ -92,12 +99,63 @@ public class GameEngine
             return;
         }
 
+        if (_currentInput.Left)
+        {
+            _paddle.MoveLeft();
+        }
+
+        if (_currentInput.Right)
+        {
+            _paddle.MoveRight();
+        }
+
         _ball.Move();
+
+        CollisionResult collisionResult = _collisionManager.Update(
+            _ball,
+            _paddle,
+            _levelManager.Bricks
+        );
+
+        if (collisionResult.DestroyedBrick != null)
+        {
+            AddScore(collisionResult.DestroyedBrick.Points);
+        }
+
+        if (collisionResult.BallLost)
+        {
+            HandleBallLost();
+            return;
+        }
+
+        if (_levelManager.IsLevelCompleted())
+        {
+            SetVictory();
+        }
     }
 
     private void Render()
     {
 
+    }
+
+    private void AddScore(int points)
+    {
+        _score += points;
+    }
+
+    private void HandleBallLost()
+    {
+        _lives--;
+
+        if (_lives <= 0)
+        {
+            SetGameOver();
+            return;
+        }
+
+        _ball.Reset();
+        _paddle.Reset();
     }
 
     private void SetVictory()
