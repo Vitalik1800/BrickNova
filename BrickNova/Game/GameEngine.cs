@@ -7,7 +7,10 @@ public class GameEngine
 {
     private readonly GameLoop _gameLoop;
     private readonly InputManager _inputManager;
+
+    private readonly Ball _ball;
     private readonly Paddle _paddle;
+
     private GameState _gameState = GameState.Menu;
     public GameState CurrentState => _gameState;
 
@@ -15,6 +18,8 @@ public class GameEngine
     {
         _inputManager = new InputManager();
         _gameLoop = new GameLoop(this);
+
+        _ball = new Ball();
         _paddle = new Paddle();
     }
 
@@ -86,6 +91,8 @@ public class GameEngine
         {
             return;
         }
+
+        _ball.Move();
     }
 
     private void Render()
