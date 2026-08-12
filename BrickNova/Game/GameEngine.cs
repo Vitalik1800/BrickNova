@@ -41,6 +41,8 @@ public class GameEngine
 
     public int Score => _score;
 
+    public int CurrentLevel => _levelManager.CurrentLevel;
+
     public GameEngine()
     {
         _inputManager = new InputManager();
@@ -142,7 +144,7 @@ public class GameEngine
 
             if (_levelManager.IsLevelCompleted())
             {
-                SetVictory();
+                AdvanceToNextLevel();
                 return;
             }
         }
@@ -167,6 +169,22 @@ public class GameEngine
             SetGameOver();
             return;
         }
+
+        _ball.Reset();
+        _paddle.Reset();
+    }
+
+    private void AdvanceToNextLevel()
+    {
+        if (_levelManager.IsFinalLevel)
+        {
+            SetVictory();
+            return;
+        }
+
+        int nextLevel = _levelManager.CurrentLevel + 1;
+
+        _levelManager.LoadLevel(nextLevel);
 
         _ball.Reset();
         _paddle.Reset();
