@@ -16,8 +16,19 @@ public class GameEngine
 
     private readonly CollisionManager _collisionManager;
 
+    public IReadOnlyList<Brick> Bricks =>
+        _levelManager.Bricks;
+
+    public Paddle Paddle => _paddle;
+
+    public Ball Ball => _ball;
+
     private GameState _gameState = GameState.Menu;
+
     public GameState CurrentState => _gameState;
+
+    public event Action? RenderRequested;
+
     private InputState _currentInput = new();
 
     private const int InitialLives = 3;
@@ -67,7 +78,8 @@ public class GameEngine
     {
         ProcessInput();
         Update();
-        Render();
+
+        RenderRequested?.Invoke();
     }
 
     private void ProcessInput()
@@ -87,6 +99,13 @@ public class GameEngine
         if (_gameState == GameState.Paused && _currentInput.Start)
         {
             _gameState = GameState.Playing;
+        }
+
+        if ((_gameState == GameState.Victory ||
+            _gameState == GameState.GameOver) &&
+            _currentInput.Restart)
+        {
+            RestartGame();
         }
 
         _currentInput.ClearCommands();
@@ -134,11 +153,6 @@ public class GameEngine
         }
     }
 
-    private void Render()
-    {
-
-    }
-
     private void AddScore(int points)
     {
         _score += points;
@@ -174,5 +188,17 @@ public class GameEngine
         }
     }
 
+    private void RestartGame()
+    {
+        _lives = InitialLives;
+        _score = 0;
+
+        _ball.Reset();
+        _paddle.Reset();
+
+        _levelManager.Reset();
+
+        _gameState = GameState.Playing;
+    }
 
 }

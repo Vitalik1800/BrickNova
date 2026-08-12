@@ -9,10 +9,12 @@ public class InputState
     public bool Pause { get; set; } 
 
     public bool Start { get; set; }
+    public bool Restart { get; set; }
 
     public void ClearCommands()
     {
         Pause = false;
         Start = false;
+        Restart = false;
     }
 }

@@ -30,4 +30,11 @@ public class LevelManager
     {
         return _bricks.All(brick => brick.IsDestroyed);
     }
+
+    public void Reset()
+    {
+        _bricks.Clear();
+
+        CreateLevel();
+    }
 }

@@ -25,6 +25,10 @@ public class InputManager
             case Keys.Space:
                 State.Start = true;
                 break;
+
+            case Keys.R:
+                State.Restart = true;
+                break;
         }
     }
 
@@ -48,6 +52,10 @@ public class InputManager
 
             case Keys.Space:
                 State.Start = false;
+                break;
+
+            case Keys.R:
+                State.Restart = false;
                 break;
         }
     }
