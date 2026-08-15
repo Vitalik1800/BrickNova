@@ -10,7 +10,7 @@ public class CollisionManager
     public CollisionResult Update(Ball ball, Paddle paddle, IEnumerable<Brick> bricks)
     {
         CheckWallCollision(ball);
-        CheckPaddleCollision(ball, paddle);
+        bool paddleHit = CheckPaddleCollision(ball, paddle);
 
         Brick? destroyedBrick = CheckBrickCollision(
             ball,
@@ -22,7 +22,8 @@ public class CollisionManager
         return new CollisionResult
         {
             DestroyedBrick = destroyedBrick,
-            BallLost = ballLost
+            BallLost = ballLost,
+            PaddleHit = paddleHit
         };
     }
 
@@ -68,7 +69,7 @@ public class CollisionManager
         }
     }
 
-    private void CheckPaddleCollision(Ball ball, Paddle paddle)
+    private bool CheckPaddleCollision(Ball ball, Paddle paddle)
     {
         RectangleF ballBounds = new RectangleF(
             ball.Position,
@@ -82,12 +83,12 @@ public class CollisionManager
 
         if (!ballBounds.IntersectsWith(paddleBounds))
         {
-            return;
+            return false;
         }
 
         if (ball.Velocity.Y <= 0)
         {
-            return;
+            return false;
         }
 
         ball.Position = new PointF(
@@ -128,6 +129,8 @@ public class CollisionManager
             velocityX,
             velocityY
         );
+
+        return true;
     }
 
     private Brick? CheckBrickCollision(Ball ball, IEnumerable<Brick> bricks)

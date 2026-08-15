@@ -11,14 +11,19 @@
   <ItemGroup>
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Fonts\" />
-    <Folder Include="Assets\Sounds\" />
-    <Folder Include="Database\" />
     <Folder Include="Levels\" />
     <Folder Include="Collision\" />
   </ItemGroup>
+	
+  <ItemGroup>
+	  <None Update="Assets\Sounds\**\*.wav">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+  </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.10" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.11" />
+    <PackageReference Include="NAudio" Version="2.3.0" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,6 @@ public static class LevelGenerator
     private const int BrickWidth = 80;
     private const int BrickHeight = 20;
 
-    private const int StartX = 100;
     private const int StartY = 100;
 
     private const int HorizontalSpacing = 10;
@@ -78,10 +77,10 @@ public static class LevelGenerator
             {
                 bricks.Add(
                     CreateBrick(
-                        startX +
+                        startX + 
                         column * (BrickWidth + HorizontalSpacing),
 
-                        StartY +
+                        StartY + 
                         row * (BrickHeight + VerticalSpacing)
                     )
                 );
@@ -101,7 +100,7 @@ public static class LevelGenerator
         {
             int columns = rows - row;
 
-            int totalWidth =
+            int totalWidth = 
                 columns * BrickWidth +
                 (columns - 1) * HorizontalSpacing;
 
@@ -114,8 +113,8 @@ public static class LevelGenerator
                         startX +
                         column * (BrickWidth + HorizontalSpacing),
 
-                        StartY +
-                        row * (BrickHeight + VerticalSpacing)
+                        StartY + 
+                        row * (BrickHeight + VerticalSpacing)   
                     )
                 );
             }
@@ -162,7 +161,7 @@ public static class LevelGenerator
             bricks.Add(
                 CreateBrick(
                     centerX - BrickWidth / 2,
-                    StartY +
+                    StartY + 
                     row * (BrickHeight + VerticalSpacing)
                 )
             );
@@ -208,7 +207,7 @@ public static class LevelGenerator
             {
                 bricks.Add(
                     CreateBrick(
-                        startX +
+                        startX + 
                         column * (BrickWidth + HorizontalSpacing),
 
                         StartY +
@@ -226,7 +225,7 @@ public static class LevelGenerator
         int columns,
         int row)
     {
-        int totalWidth =
+        int totalWidth = 
             columns * BrickWidth +
             (columns - 1) * HorizontalSpacing;
 
@@ -236,7 +235,7 @@ public static class LevelGenerator
         {
             bricks.Add(
                 CreateBrick(
-                    startX +
+                    startX + 
                     column * (BrickWidth + HorizontalSpacing),
 
                     StartY +

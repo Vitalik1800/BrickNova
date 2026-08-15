@@ -11,7 +11,9 @@ public class LevelManager
     private int _currentLevel = 1;
     public int CurrentLevel => _currentLevel;
 
-    private const int FinalLevel = 50;
+    private const int FinalLevel = 3;
+
+    public int TotalLevels => FinalLevel;
 
     public bool IsFinalLevel => 
         _currentLevel == FinalLevel;

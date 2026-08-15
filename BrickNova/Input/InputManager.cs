@@ -4,8 +4,10 @@ public class InputManager
 {
     public InputState State { get; } = new();
 
+
     public void ProcessKeyDown(Keys key)
     {
+
         switch (key)
         {
             case Keys.Left:
@@ -28,6 +30,38 @@ public class InputManager
 
             case Keys.R:
                 State.Restart = true;
+                break;
+
+            case Keys.N:
+                State.NewGame = true;
+                break;
+
+            case Keys.C:
+                State.Continue = true;
+                break;
+
+            case Keys.H:
+                State.HighScores = true;
+                break;
+
+            case Keys.F1:
+                State.Help = true;
+                break;
+
+            case Keys.F2:
+                State.About = true;
+                break;
+
+            case Keys.F3:
+                State.Settings = true;
+                break;
+
+            case Keys.F4:
+                State.ResetProgress = true;
+                break;
+
+            case Keys.M:
+                State.MainMenu = true;
                 break;
         }
     }
@@ -57,11 +91,38 @@ public class InputManager
             case Keys.R:
                 State.Restart = false;
                 break;
+
+            case Keys.N:
+                State.NewGame = false;
+                break;
+
+            case Keys.C:
+                State.Continue = false;
+                break;
+
+            case Keys.H:
+                State.HighScores = false;
+                break;
+
+            case Keys.F1:
+                State.Help = false;
+                break;
+
+            case Keys.F2:
+                State.About = false;
+                break;
+
+            case Keys.F3:
+                State.Settings = false;
+                break;
+
+            case Keys.F4:
+                State.ResetProgress = false;
+                break;
+
+            case Keys.M:
+                State.MainMenu = false;
+                break;
         }
-    }
-
-    public void ProcessInput()
-    {
-
     }
 }
