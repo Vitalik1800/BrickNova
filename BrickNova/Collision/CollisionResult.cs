@@ -1,6 +1,6 @@
 ﻿using BrickNova.Entities;
 
-namespace BrickNova.Game;
+namespace BrickNova.Collision;
 
 public class CollisionResult
 {

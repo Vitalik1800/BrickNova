@@ -1,6 +1,7 @@
 ﻿using BrickNova.Entities;
+using BrickNova.Game;
 
-namespace BrickNova.Game;
+namespace BrickNova.Levels;
 
 public class LevelManager
 {
@@ -11,7 +12,7 @@ public class LevelManager
     private int _currentLevel = 1;
     public int CurrentLevel => _currentLevel;
 
-    private const int FinalLevel = 3;
+    private const int FinalLevel = 50;
 
     public int TotalLevels => FinalLevel;
 

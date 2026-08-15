@@ -11,8 +11,6 @@
   <ItemGroup>
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Fonts\" />
-    <Folder Include="Levels\" />
-    <Folder Include="Collision\" />
   </ItemGroup>
 	
   <ItemGroup>

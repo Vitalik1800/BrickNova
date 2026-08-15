@@ -8,9 +8,7 @@ public class Ball
 
     public Ball()
     {
-        Position = new PointF(400, 300);
-        Velocity = new PointF(3, -3);
-        Size = new SizeF(20, 20);
+        Reset();
     }
 
     public void Move()
@@ -25,5 +23,6 @@ public class Ball
     {
         Position = new PointF(400, 300);
         Velocity = new PointF(3, -3);
+        Size = new SizeF(20, 20);
     }
 }

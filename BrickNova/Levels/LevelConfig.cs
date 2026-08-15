@@ -1,4 +1,6 @@
-﻿namespace BrickNova.Game;
+﻿using BrickNova.Game;
+
+namespace BrickNova.Levels;
 
 public class LevelConfig
 {

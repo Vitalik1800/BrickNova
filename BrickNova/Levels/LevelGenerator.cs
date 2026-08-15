@@ -1,6 +1,7 @@
 ﻿using BrickNova.Entities;
+using BrickNova.Game;
 
-namespace BrickNova.Game;
+namespace BrickNova.Levels;
 
 public static class LevelGenerator
 {
