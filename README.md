@@ -181,6 +181,15 @@ Also check the Master Volume setting.
 
 Game progress is stored in the local SQLite database. Removing or replacing the database can remove locally stored progress.
 
+## 🎮 Gameplay Demo
+
+Watch the BrickNova v1.0 gameplay demonstration.
+
+📸 Screenshots:
+folder screenshoots
+📸 Video:
+folder video
+
 ## 17. Version
 
 **BrickNova v1.0**
