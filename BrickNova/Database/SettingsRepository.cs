@@ -42,6 +42,8 @@ public class SettingsRepository
     private void CreateDefaultSettings(
         SqliteConnection connection)
     {
+        connection.Open();
+
         using SqliteCommand command =
             connection.CreateCommand();
 

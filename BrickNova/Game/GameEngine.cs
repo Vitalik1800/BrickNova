@@ -69,7 +69,8 @@ public class GameEngine
 
     private bool _scoreSaved;
     
-    public GameEngine()
+    public GameEngine(
+        DatabaseManager? databaseManager = null)
     {
         _inputManager = new InputManager();
         _gameLoop = new GameLoop(this);
@@ -83,7 +84,10 @@ public class GameEngine
 
         _audioManager = new AudioManager();
 
-        _databaseManager = new DatabaseManager();
+        _databaseManager = 
+            databaseManager ??
+            new DatabaseManager();
+
         _databaseManager.Initialize();
 
         _scoreRepository = new ScoreRepository(
@@ -497,6 +501,16 @@ public class GameEngine
 
     }
 
+    public void LoadLevel(int level)
+    {
+        _levelManager.LoadLevel(level);
+
+        _ball.Reset();
+        _paddle.Reset();
+
+        _gameState = GameState.Playing;
+    }
+ 
     private void RestartGame()
     {
         _lives = InitialLives;

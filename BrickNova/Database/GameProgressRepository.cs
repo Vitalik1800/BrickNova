@@ -43,6 +43,8 @@ public class GameProgressRepository
         using SqliteConnection connection = 
             _databaseManager.CreateConnection();
 
+        connection.Open();
+
         using SqliteCommand command = 
             connection.CreateCommand();
 
@@ -87,6 +89,8 @@ public class GameProgressRepository
         using SqliteConnection connection =
             _databaseManager.CreateConnection();
 
+        connection.Open();
+
         using SqliteCommand command =
             connection.CreateCommand();
 
@@ -121,6 +125,8 @@ public class GameProgressRepository
 
         using SqliteConnection connection =
             _databaseManager.CreateConnection();
+
+        connection.Open();
 
         using SqliteCommand command = 
             connection.CreateCommand();

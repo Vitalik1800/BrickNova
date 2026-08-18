@@ -35,6 +35,8 @@ public class ScoreRepository
         using SqliteConnection connection = 
             _databaseManager.CreateConnection();
 
+        connection.Open();
+
         using SqliteCommand command = 
             connection.CreateCommand();
 
@@ -86,6 +88,8 @@ public class ScoreRepository
 
         using SqliteConnection connection =
             _databaseManager.CreateConnection();
+
+        connection.Open();
 
         using SqliteCommand command =
             connection.CreateCommand();

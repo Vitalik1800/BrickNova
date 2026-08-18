@@ -6,12 +6,10 @@ public class DatabaseManager
 {
     private readonly string _connectionString;
 
-    public DatabaseManager()
+    public DatabaseManager(
+        string? databasePath = null)
     {
-        string databasePath = Path.Combine(
-            AppContext.BaseDirectory,
-            "bricknova.db"
-        );
+        databasePath ??= "bricknova.db";
 
         _connectionString =
             $"Data Source={databasePath}";
@@ -22,6 +20,8 @@ public class DatabaseManager
         using SqliteConnection connection =
            CreateConnection();
 
+        connection.Open();
+
         CreateScoresTable(connection);
         CreateGameProgressTable(connection);
         CreateSettingsTable(connection); 
@@ -29,12 +29,9 @@ public class DatabaseManager
 
     public SqliteConnection CreateConnection()
     {
-        SqliteConnection connection =
-            new SqliteConnection(_connectionString);
-
-        connection.Open();
-
-        return connection;
+        return new SqliteConnection(
+            _connectionString
+        );
     }
 
     private void CreateScoresTable(
