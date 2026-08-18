@@ -185,10 +185,9 @@ Game progress is stored in the local SQLite database. Removing or replacing the 
 
 Watch the BrickNova v1.0 gameplay demonstration.
 
-📸 Screenshots:
-folder screenshoots
-📸 Video:
-folder video
+📸 **Screenshots:** [screenshots/](https://github.com/Vitalik1800/BrickNova/tree/main/screenshots)
+
+🎥 **Video:** [video/](https://github.com/Vitalik1800/BrickNova/tree/main/video)
 
 ## 17. Version
 
