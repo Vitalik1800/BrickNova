@@ -6,10 +6,18 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PackageIcon>icon.png</PackageIcon>
+    <ApplicationIcon>Assets\Images\icon.ico</ApplicationIcon>
+	<Version>1.0</Version>
+	<AssemblyVersion>1.0.0</AssemblyVersion>  
+	<FileVersion>1.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\Images\" />
+    <Content Include="Assets\Images\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Assets\Fonts\" />
   </ItemGroup>
 	
@@ -22,6 +30,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.11" />
     <PackageReference Include="NAudio" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\Images\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
